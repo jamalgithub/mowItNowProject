@@ -1,4 +1,4 @@
-package mow.it.now.mowItNowProject;
+package com.mow.it.now;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
