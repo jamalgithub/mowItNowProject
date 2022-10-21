@@ -1,6 +1,6 @@
 package com.mow.it.now.common;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +24,9 @@ class FormateurLigneTest {
 
 	@Test
 	void formateurLigneInstruction_test() {
-		assertThat(FormateurLigne.formateurLigneInstruction("DGAD").size()).isEqualTo(4);
-		assertThat(FormateurLigne.formateurLigneInstruction("DAD").contains(InstructionEnum.DROITE));
-		assertThat(!FormateurLigne.formateurLigneInstruction("DAD").contains(InstructionEnum.GAUCHE));
+		assertThat(FormateurLigne.formateurLigneInstruction("DGAD")).hasSize(4);
+		assertThat(FormateurLigne.formateurLigneInstruction("DAD")).contains(InstructionEnum.DROITE);
+		assertThat(FormateurLigne.formateurLigneInstruction("DAD")).doesNotContain(InstructionEnum.GAUCHE);
 	}
 
 	@Test

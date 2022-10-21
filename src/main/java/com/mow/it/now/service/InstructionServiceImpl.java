@@ -55,7 +55,8 @@ public class InstructionServiceImpl implements InstructionService {
 	 */
 	private Coordonnees avancerTondeuse(Position position, Coordonnees coordonnesMax) throws TondeuseException {
 		Coordonnees coordonneesSuivantes = null;
-		int x, y;
+		int x;
+		int y;
 
 		switch (position.getOrientation()) {
 			case NORTH:
