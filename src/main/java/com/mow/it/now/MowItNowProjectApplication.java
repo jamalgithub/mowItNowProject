@@ -2,6 +2,7 @@ package com.mow.it.now;
 
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,7 @@ public class MowItNowProjectApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		File fichier = this.resourceFile.getFile();
 		List<String> resultats = this.fichierService.demarerTraitementFichier(fichier);
-		log.info("{}", resultats.toString().replaceAll("\\[|,|\\]", ""));
+		log.info("{}", resultats.stream().collect(Collectors.joining(" ")));
 	}
 
 }
