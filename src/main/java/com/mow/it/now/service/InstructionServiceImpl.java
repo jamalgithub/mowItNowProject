@@ -29,6 +29,10 @@ public class InstructionServiceImpl implements InstructionService {
 			case AVANCER:
 				position.setCoordonnees(this.avancerTondeuse(position, coordonnesMax));
 				break;
+				
+			case RECULER:
+				position.setCoordonnees(this.reculerTondeuse(position, coordonnesMax));
+				break;
 
 			case DROITE:
 				position.setOrientation(this.pivoterDroite(position.getOrientation()));
@@ -62,6 +66,55 @@ public class InstructionServiceImpl implements InstructionService {
 			case NORTH:
 				x = position.getCoordonnees().getX();
 				y = position.getCoordonnees().getY() + 1;
+				break;
+
+			case EAST:
+				x = position.getCoordonnees().getX() + 1;
+				y = position.getCoordonnees().getY();
+				break;
+
+			case SOUTH:
+				x = position.getCoordonnees().getX();
+				y = position.getCoordonnees().getY() - 1;
+				break;
+
+			case WEST:
+				x = position.getCoordonnees().getX() - 1;
+				y = position.getCoordonnees().getY();
+				break;
+
+			default:
+				throw new TondeuseException(Paramettres.POSITION_INCORRECTE);
+		}
+
+		coordonneesSuivantes = new Coordonnees(x, y);
+
+		if (this.isTondeuseDehorsPelouse(coordonneesSuivantes, coordonnesMax)) {
+			return coordonneesSuivantes;
+		} else {
+			return position.getCoordonnees();
+		}
+
+	}
+	
+	/**
+	 * faire reculer la tondeuse, si les nouvelles coordonnées sont en dehors de la pelouse, on garde la
+	 * derniere position
+	 * 
+	 * @param position      position initiale de la tondeuse
+	 * @param coordonnesMax position maximal de la pelouse (coin superieur droit)
+	 * @return coordonnees nouvelles coordonnees de la tondeuse
+	 * @throws TondeuseException
+	 */
+	private Coordonnees reculerTondeuse(Position position, Coordonnees coordonnesMax) throws TondeuseException {
+		Coordonnees coordonneesSuivantes = null;
+		int x;
+		int y;
+
+		switch (position.getOrientation()) {
+			case NORTH:
+				x = position.getCoordonnees().getX();
+				y = position.getCoordonnees().getY() - 1;
 				break;
 
 			case EAST:

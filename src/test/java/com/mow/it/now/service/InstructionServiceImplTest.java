@@ -11,6 +11,20 @@ import com.mow.it.now.entites.Position;
 import com.mow.it.now.exception.TondeuseException;
 
 class InstructionServiceImplTest {
+	
+	@Test
+	void demarerTraitementInstruction_test_reculer() throws TondeuseException {
+		// given
+		InstructionServiceImpl instructionService = new InstructionServiceImpl();
+		Position p = new Position(new Coordonnees(1, 2), OrientationEnum.NORTH);
+		Coordonnees cMax = new Coordonnees(5, 5);
+
+		// when
+		instructionService.demarerTraitementInstruction(p, InstructionEnum.RECULER, cMax);
+
+		// then
+		assertThat(p.getCoordonnees()).isEqualTo(new Coordonnees(1, 1));
+	}
 
 	@Test
 	void demarerTraitementInstruction_test_avancer() throws TondeuseException {
